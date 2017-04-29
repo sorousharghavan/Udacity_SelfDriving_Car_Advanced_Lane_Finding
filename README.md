@@ -45,8 +45,8 @@ The code for this step can be found under the calibrate_camera function. First t
 
 The distorsion arguments are then used in conjunction with undistort function of openCV in order to undistort the images. A sample undistorted image is shown below:
 
-![alt text][image1]
-![alt text][image2]
+!["Distorted"](./camera_cal/calibration2.jpg) 
+!["Undistorted"][./figure_1.png]
 
 ### Pipeline (single images)
 
