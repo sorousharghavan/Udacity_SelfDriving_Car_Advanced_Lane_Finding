@@ -16,18 +16,17 @@ The goals / steps of this project are the following:
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
 [//]: # (Image References)
-
-[image1]: .camera_cal/calibration2.jpg "Distorted"
+[image1]: ./camera_cal/calibration2.jpg "Distorted"
 [image2]: ./figure_1.png "Undistorted"
 [image3]: ./test_images/test1.jpg "Test image"
-[image4]: .figure_2.png "Undistorted sample"
-[image5]: .figure_3.png "Sample undistorted frame"
-[image6]: .figure_4.png "Sobel transform (combination of X, magnitude and direction) result"
-[image7]: .figure_5.png "S filter"
-[image8]: .figure_6.png "Sobel and S filters combined"
-[image9]: .figure_7.png "Perspective transform sample"
-[image10]: .figure_8.png "Perspective transform"
-[image11]: .figure_9.png "Polynomial fit"
+[image4]: ./figure_2.png "Distorted Sample"
+[image5]: ./figure_3.png "Sample undistorted frame"
+[image6]: ./figure_4.png "Sobel transform (combination of X, magnitude and direction) result"
+[image7]: ./figure_5.png "S filter"
+[image8]: ./figure_6.png "Sobel and S filters combined"
+[image9]: ./figure_7.png "Perspective transform sample"
+[image10]: ./figure_8.png "Perspective transform"
+[image11]: ./figure_9.png "Polynomial fit"
 [video1]: ./output.mp4 "Video"
 ---
 
