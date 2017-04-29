@@ -87,7 +87,7 @@ I verified that my perspective transform was working as expected by drawing the 
 ![alt text][image9]
 ![alt text][image10]
 
-####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 I used the sliding window method to find the lanes and find the best fit polynomial. In order to do this a funtion called 'find_lanes()' is provided in the helper file. This function takes the perspective transform image and the current position of lines as inputs. For the first frame the current lines are None.
 For the first frame, the histogram of the pixels is used as a starting point for the bottom-most window. 9 windows were chosen and the minimum number of pixels for a window to be valid was chosen to be 50.
@@ -95,13 +95,13 @@ For the next frames, the position of the previous lines (which are given as inpu
 
 ![alt text][image11]
 
-####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
 I did this using the 'find_curvature' function in helper. This function takes as arguments the lane coordinates on the image and prints the curvature to the output.
 
 Calibration values of 30 meters per 720 pixels in y-direction and 3.7 metes per 700 pixels in x-direction were chosen.
 
-####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 The lines from the previous step are averaged over 25 frames. The 'update' function of the 'Line' class takes the latest found lines and updates the averages. The averaged lines are then fed into openCV's 'fillpoly' function to draw the lane. The image perspective is then transformed back into the original perspective and drawn on top of the original image.
 
@@ -109,17 +109,17 @@ The lines from the previous step are averaged over 25 frames. The 'update' funct
 
 ---
 
-###Pipeline (video)
+### Pipeline (video)
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 Here's a [link to my video result](./output.mp4)
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Although the output video is detecting the lanes successfully, the detection in individual frames especially in shadowed regions of the road could be problematic. These frames can be smoothed out using averaging, however, averaging needs to be optimized.
 
@@ -128,6 +128,7 @@ The processing fps is too low for real time processing. Could C++ implementaiton
 The pipeline is prone to error possibly during lane changes of the vehicle and surrounding cars. Moreover, on city streets the quality of the road could result in noisy image and extra lines perpendicular to lanes such as pedestrian crossings will throw off the lanes.
 
 Suggestions for improvement could include:
+* Detect and ignore possible erroneous lines based on sudden change in the polynomial constants
 * Adding RGB filtering to the S filter
 * Optimizing Sobel threshold and kernels as well as using y-gradient
 * Dynamic source finding for the perspective transform to remove dependency to camera location
