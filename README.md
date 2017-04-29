@@ -16,17 +16,7 @@ The goals / steps of this project are the following:
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
 [//]: # (Image References)
-[image1]: ./camera_cal/calibration2.jpg "Distorted"
-[image2]: ./figure_1.png "Undistorted"
-[image3]: ./test_images/test1.jpg "Test image"
-[image4]: ./figure_2.png "Distorted Sample"
-[image5]: ./figure_3.png "Sample undistorted frame"
-[image6]: ./figure_4.png "Sobel transform (combination of X, magnitude and direction) result"
-[image7]: ./figure_5.png "S filter"
-[image8]: ./figure_6.png "Sobel and S filters combined"
-[image9]: ./figure_7.png "Perspective transform sample"
-[image10]: ./figure_8.png "Perspective transform"
-[image11]: ./figure_9.png "Polynomial fit"
+
 [video1]: ./output.mp4 "Video"
 ---
 
@@ -46,29 +36,29 @@ The code for this step can be found under the calibrate_camera function. First t
 The distorsion arguments are then used in conjunction with undistort function of openCV in order to undistort the images. A sample undistorted image is shown below:
 
 !["Distorted"](./camera_cal/calibration2.jpg) 
-!["Undistorted"][./figure_1.png]
+!["Undistorted"](./figure_1.png)
 
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
 Below is an example of an undistorted image using the calibration data from previous step.
-![alt text][image3]
-![alt text][image4]
+!["Test image"](./test_images/test1.jpg)
+!["Distorted Sample"](./figure_2.png)
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 The first step in process_image function which processes each frame is the sobel gradient calculation. The sobel function uses a combination of sobel magnitude threshhold of between 70 and 255 and directional threshold of 30 to 150 degrees. The resulting "AND" operation between the two is then mixed with the results of a X-direction sobel gradient with the threshold of 40 to 255. A kernel size of 3 was chosen for all gradients.
 It should be noted that for obtaining the gradients, the image was converted into grayscale first.
 
-![alt text][image5]
-![alt text][image6]
+!["Sample undistorted frame"](./figure_3.png)
+!["Sobel transform (combination of X, magnitude and direction) result"](./figure_4.png)
 
 The second filter used was a saturation filter. For this purpose, a HLS filter was used to convert the frame to the HLS color space and then all pixels with a value of above 180 for the S channel were chosen.
 
-![alt text][image7]
+!["S filter"](./figure_5.png)
 
 The combined result is shown here.
 
-![alt text][image8]
+!["Sobel and S filters combined"](./figure_6.png)
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
@@ -83,8 +73,8 @@ The code for my perspective transform includes a function called `unwarp()`. The
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image9]
-![alt text][image10]
+!["Perspective transform sample"](./figure_7.png)
+!["Perspective transform"](./figure_8.png)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
@@ -92,7 +82,7 @@ I used the sliding window method to find the lanes and find the best fit polynom
 For the first frame, the histogram of the pixels is used as a starting point for the bottom-most window. 9 windows were chosen and the minimum number of pixels for a window to be valid was chosen to be 50.
 For the next frames, the position of the previous lines (which are given as inputs) are used to search for points. The fitting function of Numpy.polyfit() is then used to fit a 2nd-degree polynomial to the pixels as shown below.
 
-![alt text][image11]
+!["Polynomial fit"](./figure_9.png)
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -104,7 +94,7 @@ Calibration values of 30 meters per 720 pixels in y-direction and 3.7 metes per 
 
 The lines from the previous step are averaged over 25 frames. The 'update' function of the 'Line' class takes the latest found lines and updates the averages. The averaged lines are then fed into openCV's 'fillpoly' function to draw the lane. The image perspective is then transformed back into the original perspective and drawn on top of the original image.
 
-![alt text][image12]
+!["Output sample"](./figure_10.png)
 
 ---
 
