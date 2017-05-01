@@ -58,7 +58,7 @@ The second filter used was a saturation filter. For this purpose, a HLS filter w
 
 Two additional filters were chosen. A grayscale threshold and a red channel threshold were also considered for this purpose since lanes are mostly white, yellow and orange and therefore, red is a common color that can be associated with all of them. The superimposed result of these two filters is shown below:
 
-!["R and greyscale filters"](./figure_6a.png)
+!["R and greyscale filters"](./figure_6aa.png)
 
 The combined result is shown here.
 
