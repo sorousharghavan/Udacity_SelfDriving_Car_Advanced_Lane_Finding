@@ -130,9 +130,9 @@ def sobel(image, threshold=(0,255), direction_threshold=(np.pi/6, 5*np.pi/6)):
 
     return combined
 
-def abs_sobel_thresh(img, orient='x', sobel_kernel=3, thresh=(0, 255)):
+def abs_sobel_thresh(gray, orient='x', sobel_kernel=3, thresh=(0, 255)):
     # 1) Convert to grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    #gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     # 2) Take the derivative in x or y given orient = 'x' or 'y'
     if orient == 'x':
         sobel = cv2.Sobel(gray, cv2.CV_64F, 1, 0)
@@ -149,9 +149,9 @@ def abs_sobel_thresh(img, orient='x', sobel_kernel=3, thresh=(0, 255)):
     # 6) Return this mask as your binary_output image
     return sbinary
 
-def mag_thresh(img, sobel_kernel=3, mag_thresh=(0, 255)):
+def mag_thresh(gray, sobel_kernel=3, mag_thresh=(0, 255)):
     # Convert to grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    #gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     # Take both Sobel x and y gradients
     sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=sobel_kernel)
     sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=sobel_kernel)
@@ -165,9 +165,9 @@ def mag_thresh(img, sobel_kernel=3, mag_thresh=(0, 255)):
     binary_output[(gradmag >= mag_thresh[0]) & (gradmag <= mag_thresh[1])] = 1
     return binary_output
 
-def dir_threshold(img, sobel_kernel=3, thresh=(0, np.pi/2)):
+def dir_threshold(gray, sobel_kernel=3, thresh=(0, np.pi/2)):
     # Grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    #gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     # Calculate the x and y gradients
     sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=sobel_kernel)
     sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=sobel_kernel)
@@ -283,3 +283,7 @@ def find_curvature(leftx, lefty, rightx, righty, ploty):
     # Now our radius of curvature is in meters
     print(left_curverad, 'm', right_curverad, 'm')
     return left_curverad, right_curverad
+
+def find_off_center(center, left, right):
+    xm_per_pix = 3.7/700
+    return ((right + left)/2 - center)*xm_per_pix

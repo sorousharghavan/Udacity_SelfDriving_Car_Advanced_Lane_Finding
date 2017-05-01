@@ -56,9 +56,13 @@ The second filter used was a saturation filter. For this purpose, a HLS filter w
 
 !["S filter"](./figure_5.png)
 
+Two additional filters were chosen. A grayscale threshold and a red channel threshold were also considered for this purpose since lanes are mostly white, yellow and orange and therefore, red is a common color that can be associated with all of them. The superimposed result of these two filters is shown below:
+
+!["R and greyscale filters"](./figure_6a.png)
+
 The combined result is shown here.
 
-!["Sobel and S filters combined"](./figure_6.png)
+!["Sobel, R, S and greyscale filters combined"](./figure_6b.png)
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
@@ -117,8 +121,8 @@ The processing fps is too low for real time processing. Could C++ implementaiton
 The pipeline is prone to error possibly during lane changes of the vehicle and surrounding cars. Moreover, on city streets the quality of the road could result in noisy image and extra lines perpendicular to lanes such as pedestrian crossings will throw off the lanes.
 
 Suggestions for improvement could include:
-* Detect and ignore possible erroneous lines based on sudden change in the polynomial constants
-* Adding RGB filtering to the S filter
+* Detect and ignore possible erroneous lines based on sudden change in the polynomial constants (EDIT: added to pipeline)
+* Adding RGB filtering to the S filter (EDIT: added to pipeline)
 * Optimizing Sobel threshold and kernels as well as using y-gradient
 * Dynamic source finding for the perspective transform to remove dependency to camera location
 
