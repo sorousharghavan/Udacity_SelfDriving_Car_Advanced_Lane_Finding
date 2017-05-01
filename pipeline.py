@@ -26,7 +26,7 @@ def process_image(img):
     binary_warped[(sob == 1) | (s == 1) | (gray_bin == 1) | (r_bin == 1)] = 1
 
     #display for debugging
-    #plt.imshow(binary_warped)
+    #plt.imshow(img)
     #plt.show()
     
     #warp image into birds-eye view
